@@ -1,4 +1,5 @@
 from pathlib import Path
+import joblib
 
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -40,6 +41,9 @@ print("Confusion Matrix:\n", matrix)
 # build path to output folder
 outputs_dir = Path(__file__).resolve().parent.parent / 'outputs'
 outputs_dir.mkdir(parents=True, exist_ok=True)
+
+# save trained model to outputs folder
+joblib.dump(model, outputs_dir / "model.joblib")
 
 # create and save confusion matrix figure in outputs folder
 ConfusionMatrixDisplay.from_predictions(y_test, y_pred)
